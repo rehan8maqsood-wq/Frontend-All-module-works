@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercise 8 - CORS</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .student {
+            background-color: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Service Portal</h1>
+
+    <h2>Exercise 8 - CORS</h2>
+
+    <button onclick="getStudents()">
+        Get Students
+    </button>
+
+    <p id="message"></p>
+
+    <div id="students"></div>
+
+    <script>
+
+        async function getStudents() {
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:5000/students"
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch students");
+                }
+
+                const students = await response.json();
+
+                document.getElementById("message").innerText =
+                    "CORS connection successful!";
+
+                const studentContainer =
+                    document.getElementById("students");
+
+                studentContainer.innerHTML = "";
+
+                students.forEach(function(student) {
+
+                    const div = document.createElement("div");
+
+                    div.className = "student";
+
+                    div.innerHTML = `
+                        <p><b>ID:</b> ${student.id}</p>
+                        <p><b>Name:</b> ${student.name}</p>
+                        <p><b>Email:</b> ${student.email}</p>
+                        <p><b>Course:</b> ${student.course}</p>
+                    `;
+
+                    studentContainer.appendChild(div);
+
+                });
+
+            } catch (error) {
+
+                document.getElementById("message").innerText =
+                    "CORS connection failed!";
+
+                console.log(error);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangle Area</title>
+</head>
+<body>
+
+    <h2>Area of Rectangle</h2>
+
+    <script>
+        
+        const areaOfRectangle = (length, width) => length * width;
+
+        
+        let length = Number(prompt("Enter the length:"));
+        let width = Number(prompt("Enter the width:"));
+
+        
+        let area = areaOfRectangle(length, width);
+
+        
+        document.write("<h3>Length: " + length + "</h3>");
+        document.write("<h3>Width: " + width + "</h3>");
+        document.write("<h3>Area of Rectangle: " + area + "</h3>");
+    </script>
+
+</body>
+</html>

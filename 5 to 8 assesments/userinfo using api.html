@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch User Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .user {
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User Information</h2>
+
+    <div id="users"></div>
+
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response => response.json())
+            .then(data => {
+
+                // Display only first 5 users
+                const firstFive = data.slice(0, 5);
+
+                let output = "";
+
+                firstFive.forEach(user => {
+                    output += `
+                        <div class="user">
+                            <h3>${user.name}</h3>
+                            <p><strong>Email:</strong> ${user.email}</p>
+                            <p><strong>City:</strong> ${user.address.city}</p>
+                        </div>
+                    `;
+                });
+
+                document.getElementById("users").innerHTML = output;
+            })
+            .catch(error => {
+                console.log("Error:", error);
+            });
+    </script>
+
+</body>
+</html>

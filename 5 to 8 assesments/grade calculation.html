@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+</head>
+<body>
+
+    <h2>Student Grade Calculator</h2>
+
+    <script>
+        // Input
+        let studentName = prompt("Enter Student Name:");
+        let marks = Number(prompt("Enter Marks (0-100):"));
+
+        let result, grade;
+
+        // Pass / Fail
+        if (marks >= 40) {
+            result = "Pass";
+        } else {
+            result = "Fail";
+        }
+
+        // Grade Calculation
+        if (marks >= 90 && marks <= 100) {
+            grade = "A+";
+        } else if (marks >= 80) {
+            grade = "A";
+        } else if (marks >= 70) {
+            grade = "B";
+        } else if (marks >= 60) {
+            grade = "C";
+        } else if (marks >= 40) {
+    grade = "D";
+        }
+    else {
+            grade = "Fail";
+        }
+
+        
+        document.write("<h3>Student Result</h3>");
+        document.write("<p><b>Name:</b> " + studentName + "</p>");
+        document.write("<p><b>Marks:</b> " + marks + "</p>");
+        document.write("<p><b>Result:</b> " + result + "</p>");
+        document.write("<p><b>Grade:</b> " + grade + "</p>");
+    </script>
+
+</body>
+</html>
